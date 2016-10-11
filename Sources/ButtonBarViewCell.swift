@@ -38,8 +38,9 @@ open class ButtonBarViewCell: UICollectionViewCell {
     open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
-        if label.superview != nil {
+        if label.superview != nil || imageView.superview != nil {
             contentView.addSubview(label)
+            contentView.addSubview(imageView)
         }
     }
 }

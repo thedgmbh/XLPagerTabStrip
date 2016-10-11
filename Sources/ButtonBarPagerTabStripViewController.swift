@@ -131,7 +131,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         buttonBarView.scrollsToTop = false
         let flowLayout = buttonBarView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumInteritemSpacing = settings.style.buttonBarMinimumLineSpacing ?? flowLayout.minimumLineSpacing
         flowLayout.minimumLineSpacing = settings.style.buttonBarMinimumLineSpacing ?? flowLayout.minimumLineSpacing
         let sectionInset = flowLayout.sectionInset
         flowLayout.sectionInset = UIEdgeInsetsMake(sectionInset.top, settings.style.buttonBarLeftContentInset ?? sectionInset.left, sectionInset.bottom, settings.style.buttonBarRightContentInset ?? sectionInset.right)
@@ -287,7 +287,7 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
             cell.imageView.highlightedImage = highlightedImage
         }
 
-        configureCell(cell, indicatorInfo: indicatorInfo)
+        configureCell(cell: cell, indicatorInfo: indicatorInfo)
         
         if pagerBehaviour.isProgressiveIndicator {
             if let changeCurrentIndexProgressive = changeCurrentIndexProgressive {
@@ -311,7 +311,8 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         shouldUpdateButtonBarView = true
     }
     
-    open func configureCell(_ cell: ButtonBarViewCell, indicatorInfo: IndicatorInfo){
+    open func configureCell(cell: ButtonBarViewCell, indicatorInfo: IndicatorInfo){
+        
     }
     
     private func calculateWidths() -> [CGFloat] {
